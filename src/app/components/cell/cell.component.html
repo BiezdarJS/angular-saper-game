@@ -1,0 +1,9 @@
+<button *ngIf="!cell.clicked && gameLogicS.gamestate == 'run'" (click)="onClick()" (contextmenu)="onRightClick()" class="w-full h-full text-black font-bold bg-lime-600 hover:bg-lime-500 active:bg-lime-600 border border-t-lime-200 border-l-lime-200 border-b-lime-950 border-r-lime-950 active:border-t-lime-950 active:border-l-lime-950 active:border-b-lime-200 active:border-r-lime-200">
+  {{flagSymbol}}
+</button>
+<button *ngIf="!cell.clicked && gameLogicS.gamestate != 'run'" disabled class="w-full h-full text-black font-bold bg-lime-500 border border-t-lime-200 border-l-lime-200 border-b-lime-950 border-r-lime-950">
+  {{flagSymbol}}
+</button>
+<button *ngIf="cell.clicked" [ngStyle]="{color:symbolColor}" disabled class="w-full h-full font-bold bg-lime-700 border border-lime-800">
+  {{symbol}}
+</button>

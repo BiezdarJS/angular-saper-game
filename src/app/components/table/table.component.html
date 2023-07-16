@@ -1,0 +1,30 @@
+<div class="bg-lime-700 p-2 border border-black">
+  <div class="flex items-center mb-2">
+      <div class="w-24">
+          <p class="w-full text-sm mb-1 text-white text-center font-bold">Bombs</p>
+          <p class="w-full px-4 py-2 border border-black bg-lime-800 text-4xl font-bold text-white text-center">{{gameLogicS.bombs - gameLogicS.flags}}</p>
+      </div>
+      <div class="flex-grow"></div>
+      <div class="w-24">
+          <p class="w-full text-sm mb-1 text-white text-center font-bold">Time</p>
+          <p class="w-full px-4 py-2 border border-black bg-lime-800 text-4xl font-bold text-white text-center">{{gameLogicS.time}}</p>
+      </div>
+  </div>
+  <div class="relative grid border border-black" [ngStyle]="getTableStyle()">
+      <div @gradientOverlay *ngIf="gameLogicS.gamestate != 'run'" class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full bg-[length:200%_200%] bg-[-10%_-10%] bg-no-repeat bg-gradient-to-br from-transparent from-45% via-white via-50% to-transparent to-55%">
+      </div>
+      <div @stateOverlay *ngIf="gameLogicS.gamestate == 'lose'" class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full bg-orange-600 bg-opacity-80">
+          <p class="text-sm text-white font-bold tracking-widest">GAMEOVER</p>
+          <p class="text-4xl text-white font-bold">YOU LOSE</p>
+      </div>
+      <div @stateOverlay *ngIf="gameLogicS.gamestate == 'win'" class="absolute top-0 left-0 w-full flex flex-col items-center justify-center h-full bg-green-500 bg-opacity-80">
+          <p class="text-sm text-white font-bold tracking-widest">GAMEOVER</p>
+          <p class="text-4xl text-white font-bold">YOU WIN</p>
+      </div>
+      <app-cell *ngFor="let cell of gameLogicS.cells; index as i" [cell]="cell" [index]="i"></app-cell>
+  </div>
+  <div class="flex  mt-2">
+      <button (click)="gameLogicS.newGame()" class="w-full flex-grow font-bold text-white text-lg py-2 bg-lime-600 hover:bg-lime-500 active:bg-lime-600 border border-t-lime-200 border-l-lime-200 border-r-lime-950 border-b-lime-950 active:border-t-lime-950 active:border-l-lime-950 active:border-b-lime-200 active:border-r-lime-200">NEW GAME</button>
+      <button (click)="gameLogicS.settingsVisible = true" class="font-bold text-white text-lg ml-2 px-4 py-2 bg-lime-600 hover:bg-lime-500  active:bg-lime-600 border border-t-lime-200 border-l-lime-200 border-r-lime-950 border-b-lime-950 active:border-t-lime-950 active:border-l-lime-950 active:border-b-lime-200 active:border-r-lime-200">⚙</button>
+  </div>
+</div>
